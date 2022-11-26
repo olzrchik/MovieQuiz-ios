@@ -43,11 +43,15 @@ final class MovieQuizViewController: UIViewController {
     
 
     // MARK: - IB
+    @IBOutlet private var noButtonOutlet: UIButton!
+    @IBOutlet private var yesButtonOutlet: UIButton!
     
     @IBAction private func noButtonClicked(_ sender: UIButton) {
+        noButtonOutlet.isEnabled = false
         showAnswerResult(isCorrect: false == questions[currentQuestionIndex].correctAnswer )
     }
     @IBAction private func yesButtonClicked(_ sender: UIButton) {
+        yesButtonOutlet.isEnabled = false
         showAnswerResult(isCorrect: true == questions[currentQuestionIndex].correctAnswer )
     }
     @IBOutlet private var imageView: UIImageView!
@@ -73,6 +77,8 @@ final class MovieQuizViewController: UIViewController {
                 self.correctAnswers += 1
             }
             self.showNextQuestionOrResults()
+            self.noButtonOutlet.isEnabled = true
+            self.yesButtonOutlet.isEnabled = true
         }
         
     }
@@ -108,10 +114,7 @@ final class MovieQuizViewController: UIViewController {
             if correctAnswers > biggesNumberOfRightAnsers {
             biggesNumberOfRightAnsers = correctAnswers
             }
-            var date = Date()
-            var dateTimeString = date.dateTimeString
-            var srednyayaTochnist: Float = (100.00 * Float(correctAnswers)) / 10
-            let text = "Ваш результат: \(correctAnswers)/\(questions.count) \n Количество сыгранных квизов: \(countOfSessions) \n Рекорд: \(biggesNumberOfRightAnsers)/\(questions.count) (\(dateTimeString)) \n Cредняя точность: \(srednyayaTochnist)%"
+            let text = "Ваш результат: \(correctAnswers)/\(questions.count) \n Количество сыгранных квизов: \(countOfSessions) \n Рекорд: \(biggesNumberOfRightAnsers)/\(questions.count)"
             let newViewModel =  QuizResultsViewModel(title: "Этот раунд окончен!", text: text, buttonText: "Сыграть еще раз")
             show(quiz: newViewModel)
             correctAnswers = 0
