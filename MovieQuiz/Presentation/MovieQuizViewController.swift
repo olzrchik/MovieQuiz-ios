@@ -1,18 +1,19 @@
 import UIKit
 
-final class MovieQuizViewController: UIViewController {
+final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
+    
+    
     //MARK: - vars
     private let questionsAmount: Int = 10
-    private let questionFactory: QuestionFactoryProtocol = QuestionFactory()
+    private var questionFactory: QuestionFactoryProtocol? = nil
     private var currentQuestion: QuizQuestion?
-    
-    
+
     private var currentQuestionIndex: Int = 0
     private var correctAnswers: Int = 0
     private var countOfSessions: Int = 0
     private var biggesNumberOfRightAnsers:Int = 0
     
-    // MARK: - IB
+    // MARK: - Actions
     @IBOutlet private var noButtonOutlet: UIButton!
     @IBOutlet private var yesButtonOutlet: UIButton!
     
@@ -38,15 +39,29 @@ final class MovieQuizViewController: UIViewController {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        if let firstQuestion = questionFactory.requestNextQuestion() {
-            currentQuestion = firstQuestion
-            let viewModel = convert(model: firstQuestion)
-            show(quiz: viewModel)
-        }    }
-
+        
+        imageView.layer.cornerRadius = 20
+        questionFactory?.delegate = self
+        questionFactory?.requestNextQuestion()
+        
+    }
+    // MARK: - QuestionFactoryDelegate
+    
+    func didRecieveNextQuestion(question: QuizQuestion?) {
+        guard let question = question else {
+               return
+           }
+           
+           currentQuestion = question
+           let viewModel = convert(model: question)
+        DispatchQueue.main.async { [weak self] in
+                    self?.show(quiz: viewModel)
+                }
+    }
  
     
-    //MARK: - funcs
+    // MARK: - Private functions
+   
     private func showAnswerResult(isCorrect:Bool) {
         imageView.layer.masksToBounds = true
         imageView.layer.borderWidth = 8
@@ -71,8 +86,9 @@ final class MovieQuizViewController: UIViewController {
         textLabel.text = step.question
         imageView.image = step.image
     }
-    
+  
     private  func show(quiz rezult: QuizResultsViewModel) {
+        
         let alert = UIAlertController(
             title: rezult.title,
             message: rezult.text,
@@ -83,19 +99,13 @@ final class MovieQuizViewController: UIViewController {
             guard let self = self else { return }
             print("clicked")
             self.currentQuestionIndex = 0
-            if let firstQuestion = self.questionFactory.requestNextQuestion() {
-                self.currentQuestion = firstQuestion
-                let viewModel = self.convert(model: firstQuestion)
-                
-                self.show(quiz: viewModel)
-            }
+            self.questionFactory?.requestNextQuestion()
               
         }
         
         alert.addAction(action)
         self.present(alert, animated: true)
     }
-    
     private func showNextQuestionOrResults(){
         if currentQuestionIndex == questionsAmount - 1{
             countOfSessions += 1
@@ -111,12 +121,7 @@ final class MovieQuizViewController: UIViewController {
          
         } else {
             imageView.layer.borderWidth = 0
-            if let nextQuestion = questionFactory.requestNextQuestion() {
-                currentQuestion = nextQuestion
-                let viewModel = convert(model: nextQuestion)
-                
-                show(quiz: viewModel)
-            }
+            questionFactory?.requestNextQuestion()
                     }
     }
     
