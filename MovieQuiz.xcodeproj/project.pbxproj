@@ -17,6 +17,7 @@
 		AD77F5742857F8810062FB14 /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD77F5732857F8810062FB14 /* Date+Extensions.swift */; };
 		AD7AFA552836189F00399704 /* Array+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD7AFA542836189F00399704 /* Array+Extensions.swift */; };
 		F53340F6293CFC5C0095EC3A /* QuestionFactoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F53340F5293CFC5C0095EC3A /* QuestionFactoryProtocol.swift */; };
+		F59B6AAC293CFE510024A2F0 /* QuestionFactoryDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59B6AAB293CFE510024A2F0 /* QuestionFactoryDelegate.swift */; };
 		F5AFD977293CEF4500D2FA8B /* QuestionFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5AFD976293CEF4500D2FA8B /* QuestionFactory.swift */; };
 		F5AFD97A293CF18600D2FA8B /* QuizStepViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5AFD979293CF18600D2FA8B /* QuizStepViewModel.swift */; };
 		F5AFD97C293CF19500D2FA8B /* QuizResultsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5AFD97B293CF19500D2FA8B /* QuizResultsViewModel.swift */; };
@@ -40,6 +41,7 @@
 		F5272C5C291EC06E0055341A /* YS Display-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "YS Display-Medium.ttf"; sourceTree = "<group>"; };
 		F5272C5D291EC06E0055341A /* YS Display-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "YS Display-Bold.ttf"; sourceTree = "<group>"; };
 		F53340F5293CFC5C0095EC3A /* QuestionFactoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionFactoryProtocol.swift; sourceTree = "<group>"; };
+		F59B6AAB293CFE510024A2F0 /* QuestionFactoryDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionFactoryDelegate.swift; sourceTree = "<group>"; };
 		F5AFD976293CEF4500D2FA8B /* QuestionFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionFactory.swift; sourceTree = "<group>"; };
 		F5AFD979293CF18600D2FA8B /* QuizStepViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizStepViewModel.swift; sourceTree = "<group>"; };
 		F5AFD97B293CF19500D2FA8B /* QuizResultsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizResultsViewModel.swift; sourceTree = "<group>"; };
@@ -98,8 +100,6 @@
 			children = (
 				F5AFD978293CF16E00D2FA8B /* Models */,
 				F5AFD975293CEF1A00D2FA8B /* Services */,
-				F5AFD974293CEE9E00D2FA8B /* Models */,
-				F5AFD973293CEE9100D2FA8B /* Services */,
 				8F4738322848DE2A005DF65E /* Presentation */,
 				ADF0CF75283FDAA10075F54D /* Helpers */,
 				8F4738332848DE46005DF65E /* Resources */,
@@ -119,25 +119,12 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
-		F5AFD973293CEE9100D2FA8B /* Services */ = {
-			isa = PBXGroup;
-			children = (
-				F53340F5293CFC5C0095EC3A /* QuestionFactoryProtocol.swift */,
-			);
-			path = Services;
-			sourceTree = "<group>";
-		};
-		F5AFD974293CEE9E00D2FA8B /* Models */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
 		F5AFD975293CEF1A00D2FA8B /* Services */ = {
 			isa = PBXGroup;
 			children = (
 				F5AFD976293CEF4500D2FA8B /* QuestionFactory.swift */,
+				F53340F5293CFC5C0095EC3A /* QuestionFactoryProtocol.swift */,
+				F59B6AAB293CFE510024A2F0 /* QuestionFactoryDelegate.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -260,6 +247,7 @@
 				AD5EE5DE284D7887003966EF /* UIColor+Extensions.swift in Sources */,
 				AD7AFA552836189F00399704 /* Array+Extensions.swift in Sources */,
 				F53340F6293CFC5C0095EC3A /* QuestionFactoryProtocol.swift in Sources */,
+				F59B6AAC293CFE510024A2F0 /* QuestionFactoryDelegate.swift in Sources */,
 				AD1ABAB62831907B00B3E448 /* MovieQuizViewController.swift in Sources */,
 				F5AFD97A293CF18600D2FA8B /* QuizStepViewModel.swift in Sources */,
 				F5AFD97E293CF1A100D2FA8B /* QuizQuestion.swift in Sources */,
